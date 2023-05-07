@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Motel Management</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link  href="css/bootstrap.min.css" rel="stylesheet">
+    <script src='js/bootstrap.js'></script>   
+    <script src='js/bootstrap.min.js'></script>   
+</head>
+<style>
+     body { 
+        padding: 0 20px;
+        height: 100vh;
+        background: rgb(98, 9, 121);
+        background: linear-gradient(56deg, rgba(98, 9, 121, 1) 0%, rgba(0, 255, 246, 1) 100%);
+        background-size: cover;
+        background-repeat: none;
+        margin: auto;
+        display: grid;
+        place-items: center
+    }
+    .top {
+        top: 0%;
+        width: 100%;
+        overflow: hidden;
+        background-color: black;
+        position: fixed;
+    }
+
+        .top a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .top a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .top a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+   
+
+</style>
+<body>
+    <div class="top">
+        <a href="#home"><a href="index.html">Home</a></a>
+        <a class="active" href="#Account_Management">Account Management</a>
+        <a href="#Motel_Management">Motel Management</a>
+        <a href="#See_The_Bill">See The Bill</a>
+        <a href="#Internal_Management">Internal Management</a>
+        <a href="#Feedback">Feedback</a>
+    </div>
+   <div class="container my-5"> 
+       <form action="controller" method="get" class="d-md-flex d-sm-block justify-content-between"> 
+           <input type="hidden" name="command" value="select-orders"> 
+           <h1 class="h5 align-self-center col-3">Account List</h1> 
+           <div class="btn-group align-self-center col-12 col-sm-12 col-md-8 col-lg-6"> 
+               <select name="searchType" class="btn btn-outline-dark col-3 col-sm-3"> 
+                   <option value="RenderId">Render ID</option> 
+                   <option value="Name">Name</option> 
+                   <option value="Phone">Phone</option>
+                </select> <input type="search" name="searchBy" class="col-6 col-sm-6"> 
+                <input type="submit" value="Search" class="btn btn-outline-dark col-3 col-sm-3"> 
+            </div> 
+        </form> 
+        <div class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 rounded-3"> 
+            <div class="col-2 text-sm-center text-md-start align-self-center"> 
+                <h1 class="h5 fw-bold">Render ID</h1> 
+            </div> 
+           
+            <div class="col-2 align-self-center"> 
+                <h1 class="h5 fw-bold">Name</h1> 
+            </div>
+            <div class="col-3 align-self-center"> 
+                <h1 class="h5 fw-bold">Phone</h1> 
+            </div>  
+            <div class="col-2 align-self-center"> 
+                <h1 class="h5 fw-bold">Show details</h1>     
+            </div> 
+            <div class="col-2 align-self-center"> 
+                <h1 class="h5 fw-bold">Status</h1> 
+            </div> 
+        </div> 
+        <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">R01</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">Nguyen Thi Hoang Oanh</h1> 
+        </div> 
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6">012-456-789</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <a class="btn btn-outline-dark w-100" href="home.html">Details</a> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <input type="hidden" name="command" value="refresh-order-status"> 
+                <select name="status" class="btn btn-outline-dark"> 
+                    <option value="HIRED" class="form-select-button">HIRED</option> 
+                    <option value="DELETE" class="form-select-button">EMPTY</option> 
+                </select> 
+                <input type="submit" class="btn btn-outline-dark" value="OK"> 
+            </form> 
+            </div> 
+        </div> 
+        <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">R02</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">Huynh Quoc Nhan</h1> 
+        </div> 
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6">012-456-789</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <a class="btn btn-outline-dark w-100" href="home.html">Details</a>
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <input type="hidden" name="command" value="refresh-order-status"> 
+                <select name="status" class="btn btn-outline-dark"> 
+                    <option value="HIRED" class="form-select-button">HIRED</option> 
+                    <option value="EMPTY" class="form-select-button">EMPTY</option> 
+                </select> 
+                <input type="submit" class="btn btn-outline-dark" value="OK"> 
+            </form> 
+            </div> 
+        </div> 
+        <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">R03</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">Hong Quan</h1> 
+        </div> 
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6"></h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <a class="btn btn-outline-dark w-100" href="home.html">Details</a>
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <input type="hidden" name="command" value="refresh-order-status"> 
+                <select name="status" class="btn btn-outline-dark"> 
+                    <option value="HIRED" class="form-select-button">HIRED</option>  
+                    <option value="EMPTY" class="form-select-button">EMPTY</option>    
+                </select> 
+                <input type="submit" class="btn btn-outline-dark" value="OK"> 
+            </form> 
+            </div> 
+        </div> 
+        <div class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light p-2 rounded-3"> 
+            <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">R04</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <h1 class="h6">Tan Phat</h1> 
+        </div> 
+        <div class="col-md-3 text-sm-center text-md-start align-self-center my-2">
+            <h1 class="h6">023-456-789</h1> 
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <a class="btn btn-outline-dark w-100" href="home.html">Details</a>
+        </div> 
+        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> 
+            <form method="get" action="controller" class="d-flex btn-group"> 
+                <input type="hidden" name="command" value="refresh-order-status"> 
+                <select name="status" class="btn btn-outline-dark"> 
+                    <option value="HIRED" class="form-select-button">HIRED</option>  
+                    <option value="EMPTY" class="form-select-button">EMPTY</option>    
+                </select> 
+                <input type="submit" class="btn btn-outline-dark" value="OK"> 
+            </form> 
+            </div> 
+        </div> 
+ </div>
+</body>
+</html>

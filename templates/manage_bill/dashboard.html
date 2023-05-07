@@ -1,0 +1,343 @@
+{% extends "home/base.html" %}
+{% load  static %}
+{% block style %}
+    .container-bill{
+        text-align: center;
+    }
+    .btn-submit-bill{
+        border: 0px;
+        background-color:inherit;
+    }
+    .delete-bill{
+        color:blue;
+    }
+    .delete-bill:hover{
+        background-color:black !important;
+        color:white;
+        font-size:15px;
+        cursor:pointer;
+    }
+{% endblock style %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'bill/css/dashboard.css' %}">
+{% endblock link %}
+{% block dashboard %}
+  <div class="inside">
+        <!-- HEADER -->
+        <header>
+            <div class="header-left">
+                <i class="fa-solid fa-bars buttom-menu"></i>
+            </div>
+            <div class="header-right">
+                <div class="text">
+                    <i class="fa-solid fa-file"></i>
+                </div>
+                <div class="calcula">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+            </div>
+        </header>
+        <!-- BLUR -->
+        <div id="blur-cal">
+            <div class="wrapper">
+                <div class="modal-header">
+                    <h4>Máy tính</h4>
+                    <i class="fa-solid fa-circle-xmark ic-close"></i>
+                </div>
+                <div class="modal-body">
+                    <div id="result"></div>
+                    <div class="calculator">
+                        <div class="number">
+                            <button class="btn" value="7">7</button>
+                            <button class="btn" value="8">8</button>
+                            <button class="btn" value="9">9</button>
+                            <button class="btn" value="4">4</button>
+                            <button class="btn" value="5">5</button>
+                            <button class="btn" value="6">6</button>
+                            <button class="btn" value="1">1</button>
+                            <button class="btn" value="2">2</button>
+                            <button class="btn" value="3">3</button>
+                            <button class="btn" value="0">0</button>
+                            <button class="btn" value=".">.</button>
+                            <button class="btn" onclick="equal()">=</button>
+                        </div>
+                        <div class="operation">
+                            <button class="btn" onclick="undo()">D</button>
+                            <button class="btn" style="background: rgb(141, 2, 2);" onclick="clean()">C</button>
+                            <button class="btn" value="*">*</button>
+                            <button class="btn" value="/">/</button>
+                            <button class="btn" value="+">+</button>
+                            <button class="btn" value="-">-</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="footer-shutcal">
+                        <button>Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="blur-text">
+            <div class="wrapper-text">
+                <div class="modal-header">
+                    <h4>Ghi chú</h4>
+                    <i class="fa-solid fa-circle-xmark ic-close-text"></i>
+                </div>
+                <div class="modal-content">
+                    <textarea id="Note" rows="12" cols="60" class="form-control" placeholder="Nội dung"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <div class="footer-save">
+                        <button>Lưu</button>
+                    </div>
+                    <div class="footer-shut">
+                        <button>Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTAINER -->
+        <div class="container container-bill">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><strong>Tính tiền</strong></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <div></div>
+                            </li>
+                            <li>
+                                
+                                <button class="btn btn-primary " type="month" 
+                                    title="Tính tiền phòng và dịch vụ hàng tháng" style="display: inline-block;"><i
+                                        class="fa fa-calendar"></i> Tháng
+                                        <input id="input-month" type="month">
+                                </button>
+                                <button class="btn btn-primary filter-month" >
+                                        oke
+                                </button>
+                            
+                                <button class="btn btn-primary" type="button" id="input-bill_btn"
+                                    title="Tính tiền phòng và dịch vụ hàng tháng" style="display: inline-block;"><i
+                                        class="fa fa-calculator"></i> Nhập hóa đơn
+            
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="x_content">
+                        <form data-parsley-validate="" class="form-horizontal form-label-left" method="post">
+                            <!-- <div class="form-group">
+                                <label class="col-fhd-1 col-xlg-1 col-md-1 col-sm-12 col-xs-2">
+                                    Tháng/năm
+                                </label>
+                                <div class="col-fhd-2 col-xlg-2 col-md-2 col-sm-12 col-xs-2">
+                                    <input type="text" id="monthYearSearch" name="monthYearSearch" class="form-control">
+                                </div>
+        
+                                <div class="col-fhd-2 col-xlg-2 col-md-2 col-sm-12 col-xs-2">
+                                    <label style="width:15%;float:left">
+                                        Kỳ
+                                    </label>
+                                    <div class="select2-container" id="s2id_payTypeSearch" style="width: 85%;"><a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">   <span class="select2-chosen">Tất cả</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow"><b></b></span></a><input class="select2-focusser select2-offscreen" type="text" id="s2id_autogen1"></div><select style="width:85%;float:left" id="payTypeSearch" tabindex="-1" class="select2-offscreen">
+                                        <option value="-1" selected="">Tất cả</option>
+                                        <option value="1">Kỳ 15</option>
+                                        <option value="2">Kỳ 30</option>
+                                    </select>
+                                </div>
+                                <label class="col-fhd-1 col-xlg-1 col-md-1 col-sm-12 col-xs-2">
+                                    Nhà
+                                </label>
+                                <div class="col-fhd-2 col-xlg-2 col-md-2 col-sm-12 col-xs-2">
+                                    <div class="select2-container" id="s2id_areaIDSearch" style="width: 100%;"><a href="javascript:void(0)" onclick="return false;" class="select2-choice select2-default" tabindex="-1">   <span class="select2-chosen">Tất cả</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow"><b></b></span></a><input class="select2-focusser select2-offscreen" type="text" id="s2id_autogen3"></div><input type="text" style="width:100%" name="areaIDSearch" id="areaIDSearch" url="/Global/GetAreaBaseId" tabindex="-1" class="select2-offscreen">
+                                </div>
+                                <div class="col-fhd-2 col-xlg-2 col-md-2 col-sm-12 col-xs-2">
+                                    <button class="btn btn-success" type="button" id="searchButton"><i class="fa fa-search"></i> Xem</button>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <p>
+                                    <strong>Lưu ý:</strong>
+                                    <br>
+                                    - Bạn phải thực hiện việc "Thêm khách" ở chức năng "Phòng" và gán các dịch vụ
+                                    cho khách thuê trước khi tính tiền.
+                                    <br>
+                                    - Nếu có bất kỳ thay đổi liên quan đến tiền nhà tháng đang tính (ví dụ: thay đổi
+                                    cs điện, nước, đơn giá phòng, ngày vào, giá dịch vụ, ...) thì bạn phải tính tiền
+                                    lại cho tháng đó.
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <div id="table_wrapper"
+                                    class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div class="row" style="width: 100%">
+                                        <div class="col-sm-12">
+                                            <table id="table"
+                                                class="table table-striped table-bordered dt-responsive nowrap dataTable"
+                                                cellspacing="0" width="100%" role="grid">
+                                                <thead>
+                                                    <tr role="row" class="">                                                       
+                                                        <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                            style="width: 15%; font-size: 13px">Phòng</th>
+                                                        <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                            style="width: 15%; font-size: 13px">Số chữ điện</th>
+                                                        <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                            style="width: 15%; font-size: 13px">Số khối nước</th>
+                                                        <th class="dt-body-right sorting_disabled" rowspan="1"
+                                                            colspan="1" style="width: 15%; font-size: 13px">Thành Tiền (VNĐ)</th>
+                                                        <th class="dt-body-right sorting_disabled" rowspan="1"
+                                                            colspan="1" style="width: 15%; font-size: 13px">Ngày tháng</th>
+                                                        <th class="dt-body-right sorting_disabled" rowspan="1"
+                                                            colspan="1" style="width: 15%; font-size: 13px">Thanh Toán</th>
+                                                        <th class="dt-body-right sorting_disabled" rowspan="1"
+                                                        colspan="1" style="width: 15%; font-size: 13px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="infor-bill-table">
+                                                    {% for bill in bills %}
+                                                        <tr value="{{bill.id}}">
+                                                            <th><a href="{% url 'bill:edit_bill' bill.id %}">{{bill.room.room_number}}</a></th>
+                                                            <th>{{bill.electrict_number}}</th>
+                                                            <th>{{bill.cubic_metres_of_water}}</th>
+                                                            <th>{{bill.get_total_amount}}</th>
+                                                            <th>{{bill.date|date:"d M Y"}}</th>
+                                                            <th class="status_pay " style="color:red">
+                                                                {% if bill.pay_status == False %}
+                                                                    X
+                                                                {% else %}
+                                                                    V
+                                                                {% endif %}
+                                                            </th>
+                                                            <th class="delete-bill"  value="{{ bill.id }}" style="background-color:burlywood">
+                                                                Xóa
+                                                            </th>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="blur-bill">
+                <div class="wrapper-bill">
+                    <form id="input_bill">
+                        {% csrf_token %}
+                        <div class="header-bill">
+                            <h2>Tính tiền</h2>
+                            <div class="close-bill">
+                                <i class='bx bx-window-close'></i>
+                            </div>
+                        </div>
+    
+                        <div class="body-bill">
+                            {{ create_bill_form }}
+                            <div id="message_errors"></div>
+                        </div>
+    
+                        <div class="footer-bill">
+                            <div class="btn-bill">
+                                <button class="btn-submit-bill" type="submit">
+                                    <div class="btn btn-primary">
+                                        <i class='bx bx-calculator'></i>
+                                        Nhập
+                                    </div>
+                                </button>
+                                <div class="btn btn-danger">
+                                    <i class='bx bx-x'></i>
+                                    Đóng
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+  </div>
+{% endblock dashboard %}
+{% block script %}
+    <script>
+        // CLICK SHOW BILL
+        
+        const blur_bill = document.querySelector('#blur-bill');
+        const bill=document.querySelector('#input-bill_btn');
+
+        bill.onclick = function () {
+        blur_bill.classList.add('show_bill');
+        }
+        // CLICK HIDE TEXT
+        const close_bill =document.querySelector('.close-bill');
+        const btn_close_bill=document.querySelector('.footer-bill .btn-danger')
+
+        close_bill.onclick=function(){
+        blur_bill.classList.remove('show_bill');
+        }
+        btn_close_bill.onclick=function(){
+        blur_bill.classList.remove('show_bill');
+        }
+        
+        $("#input_bill").submit(function(e){
+            e.preventDefault()
+            var data=$(this).serialize()
+            alert("nhap")
+            $.ajax({
+                type:'POST',
+                url:"{% url 'bill:bill_site' %}",
+                data:data,
+                
+                success:function(response){
+                    if(response['valid']==false){
+                        const errors=JSON.parse(response.errors)
+                        for(var key in errors){
+                            for(var i in errors[key]){
+                                $('#message_errors').append(`<li> ${errors[key][i]}</li>`)
+                            }
+                        }
+                    }
+                    else{
+                        location.reload();
+                    }
+                }
+            })
+        })
+        $(".filter-month").click(function(){
+            var date=$("#input-month").val()
+            index=(date.indexOf('-'))
+            const month=date.slice(index+1)
+            
+            if(index!=-1){
+                window.location.href =`/bill/dashboard/${month}`;
+            }
+        })
+
+        $(".delete-bill").click(function(e){
+            const id=$(this).attr("value")
+            e.preventDefault()
+            const element=$(this)
+            element.parent().remove()
+            $.ajax({
+                url:`/bill/delete_bill/${id}/`,
+                type:'GET',
+                success: function(response){
+                    if(response['valid']=='true'){
+                        alert("Thành Công")
+                    }
+                    else{
+                        alert("Thất Bại")
+                    }
+                
+                }
+            })
+        })
+
+    </script>  
+
+{% endblock script %}
+<!-- action="{% url 'bill:bill_site' %}" method="post" -->

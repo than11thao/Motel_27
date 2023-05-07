@@ -1,0 +1,19 @@
+{% extends "home/base.html" %}
+{% load  static %}
+{% block style %}
+    .add_member{
+        padding: 5% 10%;
+    }
+{% endblock style %}
+
+{% block dashboard %}
+  <div class="add_member">
+    <h1>Thêm thành viên  vào phòng {{room.room_number}} <span class="badge badge-secondary">!</span></h1>
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{add_member_form}}
+          <input type="submit" class="btn btn-primary" value="oke">
+      </form>
+  </div>
+{% endblock dashboard %}

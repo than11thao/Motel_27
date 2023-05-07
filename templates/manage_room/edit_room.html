@@ -1,0 +1,19 @@
+{% extends "home/base.html" %}
+{% load  static %}
+{% block style %}
+    .edit_room{
+        padding: 5% 10%;
+    }
+{% endblock style %}
+
+{% block dashboard %}
+  <div class="edit_room">
+    <h1>Sửa phòng trọ số {{room.room_number}} <span class="badge badge-secondary">!</span></h1>
+    <form action="." method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{edit_room_form}}
+          <input type="submit" class="btn btn-primary" value="oke">
+      </form>
+  </div>
+{% endblock dashboard %}

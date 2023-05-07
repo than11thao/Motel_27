@@ -1,0 +1,211 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'renter_dashboard/css/bootstrap.css' %}" rel="stylesheet">
+    <link  href="{% static 'renter_dashboard/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    {% block link %}
+      
+    {% endblock link %}
+    <link rel="stylesheet" href="{% static 'renter_dashboard/css/base.css' %}">
+    <style>
+        
+            .top {
+                top : 0%;
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                position: absolute;
+                width: 100%;
+                overflow: hidden;
+                background-color: black;
+                position: fixed;
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 10px;
+            }
+        
+                .top a {
+                    color: #f2f2f2;
+                    text-align: center;
+                    padding: 10px 10px;
+                    text-decoration: none;
+                    font-size: 20px;
+                }
+        
+                    .top a:hover {
+                        background-color: #ddd;
+                        color: black;
+                    }
+        
+                    .top a.active {
+                        background-color: #4CAF50;
+                        color: white;
+                    }
+            body { 
+            padding: 0 20px;
+            height: 100vh;
+            background: rgb(98, 9, 121);
+            background: linear-gradient(56deg, rgba(98, 9, 121, 1) 0%, rgba(0, 255, 246, 1) 100%);
+            background-size: cover;
+            background-repeat: none;
+            margin: auto;
+            display: grid;
+            place-items: center;
+        }
+        
+        .container {
+            margin-top: 40px
+        }
+            .container .row :hover{
+                
+                        color: black;
+            }
+        .section-title {
+            margin-bottom: 38px
+        }
+        
+        .shadow,
+        .subscription-wrapper {
+            box-shadow: 0px 15px 39px 0px rgba(8, 18, 109, 0.1) !important
+        }
+        
+        .icon-primary {
+            color: #062caf
+        }
+        
+        .icon-bg-circle {
+            position: relative
+        }
+        
+        .icon-lg {
+            font-size: 50px
+        }
+        
+        .icon-bg-circle::before {
+            z-index: 1;
+            position: relative
+        }
+        
+        .icon-bg-primary::after {
+            background: #062caf !important
+        }
+        
+        .icon-bg-circle::after {
+            content: '';
+            position: absolute;
+            width: 68px;
+            height: 68px;
+            top: -35px;
+            left: 15px;
+            border-radius: 50%;
+            background: inherit;
+            opacity: .1
+        }
+        p,
+        .paragraph {
+            font-weight: 400;
+            color: #8b8e93;
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: "Open Sans", sans-serif
+        }
+        .icon-bg-yellow::after {
+        background: #f6a622 !important
+    }
+    
+    .icon-bg-purple::after {
+        background: #7952f5
+    }
+    
+    .icon-yellow {
+        color: #f6a622
+    }
+    
+    .icon-purple {
+        color: #7952f5
+    }
+    
+    .icon-cyan {
+        color: #02d0a1
+    }
+    
+    .icon-bg-cyan::after {
+        background: #02d0a1
+    }
+    
+    .icon-bg-red::after {
+        background: #ff4949
+    }
+    
+    .icon-red {
+        color: #ff4949
+    }
+    
+    .icon-bg-green::after {
+        background: #66cc33
+    }
+    
+    .icon-green {
+        color: #66cc33
+    }
+    .row a{
+        text-decoration: none;
+        color: black;
+    }
+    {% block style %}
+  
+    {% endblock style %}
+</style>
+
+    
+</head>
+
+<body>
+    <div class="top">
+        <a href="{% url 'home:renter_site' %}">Home</a>
+        <a href="{% url 'user:edit_user_of_renter_site' user.renter.id %}">Account Management</a></a>
+        <a href="{% url 'bill:bill_of_renter_site' %}">See The Bill</a>
+        <a href="#Internal_Management">Internal Management</a>
+        <a href="{% url 'feedback:renter_feed_back' %}">Feedback</a>
+        <a href="{% url 'home:logout' %}">LogOut</a>
+
+        <div class="card">
+            <div class="card-body">
+            <h4>{{user.full_name}} <span class="badge bg-secondary">P{{user.renter.room.room_number}}</span></h4>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+      
+    {% endblock content %}    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="{% static 'home/script.js/index.js' %}"></script>
+    {% block script %}
+        
+    {% endblock script %}
+</body>
+
+</html>

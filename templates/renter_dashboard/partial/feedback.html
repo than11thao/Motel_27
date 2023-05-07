@@ -1,0 +1,104 @@
+{% extends "renter_dashboard/base.html" %}
+{% load static  %}
+{% block style %}
+	body{
+		padding: 0 20px;
+		height: 100vh;
+		background: rgb(98, 9, 121);
+		background: linear-gradient(56deg, rgba(98, 9, 121, 1) 0%, rgba(0, 255, 246, 1) 100%);
+		background-size: cover;
+		background-repeat: none;
+		margin: auto;
+		display: grid;
+		place-items: center;
+	}
+	img{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+	.radio-inline{
+		margin: 0px 40px 20px 0px;
+		cursor: pointer;
+	}
+
+	label{
+		color: #000;
+	}
+
+	#text{
+		height: 40px;
+		border-radius: 5px;
+		padding-left: 10px;
+		font-size: 14px;
+		border: none;
+		width: 100%;
+		color: #000;
+	}
+
+	#message{
+		outline: none;
+		border: none;
+		padding: 10px 0px 0px 15px;
+		font-size: 16px;
+		color:#000;
+		border-radius: 5px;
+		width: 100%
+	}
+	.box_send_feedback_form{
+		padding: 10% 10%;
+	}
+	
+{% endblock style %}
+{% block content %}
+  <div class="container">
+	  <div class="box_send_feedback_form">
+		<h3>Send Feed Back</h3>
+		<form action="." method="POST">
+			{% csrf_token %}
+			<div class="mb-3">
+			  <label for="" class="form-label">Message*</label>
+			  {{send_feed_back_form.message}}
+			  <div id="" class="form-text">Send Feed Back to Owner</div>
+			  {{send_feed_back_form.room}}
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Submit</button>
+		  </form>
+		  <table class="table table-dark">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">ID</th>
+				<th scope="col">Room</th>
+				<th scope="col">Message</th>
+				<th scope="col">Date</th>
+				<th scope="col">Status</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for fb in feedbacks %}
+			  <tr>
+				<th scope="row">1</th>
+				<td>{{fb.id}}</td>
+				<td>{{fb.room.room_number}}</td>
+				<td>{{fb.message}}</td>
+				<td>{{fb.created_at}}</td>
+				<td>
+					{% if fb.status %}
+						Vs	
+					{% else %}
+						X
+					{% endif %}
+				</td>
+			  </tr>
+			  {% endfor %}
+			  
+			</tbody>
+		  </table>
+	  </div>
+	  
+  </div>
+{% endblock content %}
+

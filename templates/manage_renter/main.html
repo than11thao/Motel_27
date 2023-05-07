@@ -1,0 +1,48 @@
+{% extends "home/base.html" %}
+{% load  static %}
+{% block style %}
+    .main{
+        padding: 5% 10%;
+    }
+    .edit_user{
+      font-weight:bold;
+    }
+{% endblock style %}
+
+{% block dashboard %}
+  <H1>Thông tin người thuê trọ</H1> 
+  <a class="btn btn-primary" href="{% url 'user:provide_account_user' %}" role="button">Cấp tài khoản</a>
+  <div class="main">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Số điện Thoại</th>
+            <th scope="col">CMND</th>
+            <th scope="col">Phòng số</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for renter in renters %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a class="edit_user" href="{% url 'user:edit_renter' renter.id  %}">{{renter.user.full_name}}</a></td>
+            <td>{{renter.user.phone_number}}</td>
+            <td>{{renter.citizen_id}}</td>
+            <td>{{renter.room.room_number}}</td>
+            <td><a href="{% url 'user:delete_renter' renter.user.id  %}">
+              <button type="button" class="btn btn-danger">X</button>
+            </a></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+  </div>
+{% endblock dashboard %}
+
+{% block script %}
+          
+{% endblock script %}

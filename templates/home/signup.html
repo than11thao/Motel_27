@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Here</title>
+    <link rel="stylesheet" href="{% static 'home/css/signup.css' %}">
+</head>
+<body>
+    <div class="content">
+        <h1 class="header">Signup Here</h1>
+        {% comment %} <form action=" {% url 'login' %}" class="form" method="post"> {% endcomment %}
+            <form action="" class="form" method="post">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username"  placeholder="Username">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email or Phone">
+            {% comment %} <label for="fullname">Full Name</label>
+            <input type="text" name="fullname" id="fullname" placeholder="Full Name"> {% endcomment %}
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1" placeholder="Password"> 
+            <label for="password2">Confrom Password</label>
+            <input type="password" name="password2" id="password2" placeholder="Confrom Password">
+            <input type="submit" value="Signup" class="button">
+            <div class="have_account">
+                <a href="{% url 'home:login'%}" >i have already account</a>
+            </div>
+
+        </form>   
+    </div>
+</body>
+</html>

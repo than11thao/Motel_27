@@ -1,0 +1,72 @@
+.container .x_title_room{
+    padding: 0.5rem;
+    border-bottom: 2px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.container .add_room{
+    background-color: #26B99A;
+    font-size: 12px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.container .x_content_room{
+    width: 100%;
+    /* height: 100%; */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    background-color: #fff;
+}
+.container .box_room{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px;
+}
+.box_room .box_items{
+    width: 17%;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 10px;
+    background: #fff;
+}
+.box_items .room_number{
+    font-size: 13px;
+    margin: 10px 0 20px 0;
+}
+.box_items .add_user button{
+    font-size: 10px; 
+    display: inline-block;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+}
+.box_items .room_money{
+    font-size: 13px; 
+    margin-bottom: 20px;
+}
+.box_items .room_money span{
+    color: red;
+    
+}
+.box_items .impact_room button{
+    font-size: 10px; 
+    display: inline-block;
+    border: none;
+    outline: none;
+}
+.box_items .impact_room button i{
+    margin-right: 5px;
+}
+.box_items .impact_room .edit_room{
+   background-color:#337ab7;
+}
+.box_items .impact_room .delete_room{
+    background-color: #d9534f;
+}

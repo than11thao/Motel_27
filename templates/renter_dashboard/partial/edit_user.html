@@ -1,0 +1,22 @@
+{% extends "renter_dashboard/base.html" %}
+{% load static  %}
+
+{% block style %}
+  .edit_user_box{
+      color:#FFA500;
+      font-weight: bold;
+  }
+
+{% endblock style %}
+{% block content %}
+  <div class="edit_user_box">
+    <H1>Sửa Thông tin người thuê trọ {{renter.user.full_name}}</H1>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{edit_user_form}}
+        {{edit_renter_form}}
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock content %}

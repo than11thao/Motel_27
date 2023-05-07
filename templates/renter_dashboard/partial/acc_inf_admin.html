@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body { 
+        background: rgb(98, 9, 121);
+        background: linear-gradient(56deg, rgba(98, 9, 121, 1) 0%, rgba(0, 255, 246, 1) 100%);
+        background-size: cover;
+        background-repeat: none;
+        color: white;
+        height: 100vh;
+    }
+    .top {
+        top: 0%;
+        width: 100%;
+        overflow: hidden;
+        background-color: black;
+        position: fixed;
+    }
+
+        .top a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .top a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .top a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+   
+
+        h1 {
+            background-color: #00b33c;
+        }
+    
+        p2/p2 {
+            background-color: #FFFFFF;
+        }
+        p1{ padding-left: 60px }
+        p2{ padding-left: 100px }
+        p3{ padding-left: 338px }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title id="Account_Management">Home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class="top">
+            <a href="#home"><a href="index_admin.html">Home</a></a>
+            <a class="active" href="#Account_Management">Account Management</a>
+            <a href="#Motel_Management">Motel Management</a>
+            <a href="#See_The_Bill"><a href="bill_list_admin.html">See The Bill</a></a>
+            <a href="#Internal_Management">Internal Management</a>
+            <a href="#Feedback"><a href="feedback_admin.html">Feedback</a></a>
+        </div>
+        <br /><br />
+        <p>First, enter a username and password. Then, you'll be able to edit user options</p>
+        <br>
+        <p1>
+            
+            <b>User ID</b>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&ensp;
+            <input type="text" name="user_id">
+        </p1>
+        <p2>
+            <b>Citizen ID</b>
+            &emsp;&emsp;
+            <input type="text" name="citizen_id">
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>User Name</b>
+            &emsp;&emsp;&emsp;&emsp;&ensp;
+            <input type="text" name="user_name">
+        </p1>
+        <p2>
+            <b>Name</b>
+            &emsp;&emsp;&emsp;&emsp;
+            <input type="text" name="name">
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>Password</b>
+            &emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;&nbsp;
+            <input type="text" name="password">
+        </p1>
+        <p2>
+            <b>Birthday</b>
+            &emsp;&emsp;&emsp;
+            <input type="date" id="birthday" name="birthday">
+
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>Password confirm</b> 
+            &emsp;&nbsp;&nbsp;
+            <input type="text" name="confirm_password">
+        </p1>
+        <p2>
+            <b>Phone</b>
+            &emsp;&emsp;&emsp;&emsp;
+            <input type="text" name="phone">
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>Email Address</b> 
+            &emsp;&emsp;&ensp;&nbsp;
+            <input type="text" name="email_address">
+        </p1>
+        <p2>
+            <b>Address</b>
+            &emsp;&emsp;&emsp;&ensp;
+            <input type="text" name="address">
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>Room ID</b> 
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type="text" name="room_id">
+        </p1>
+        <hr width="60%" align="left" />
+        <p1>
+            
+            <b>Renter ID</b>
+            &emsp;&emsp;&emsp;&emsp;&nbsp;&ensp;
+            <input type="text" name="renter_id">
+        </p1>
+        <p2>
+            <b>Owner ID</b>
+            &emsp;&emsp;&nbsp;
+            <input type="text" name="owner_id">
+        </p2>
+        <hr width="60%" align="left" />
+        <p1>
+            <input type="checkbox" id="owner" name="owner">
+            <label for="label"><b> Is owner</b></label>
+        </p1>
+        <p3>
+            <input type="checkbox" id="renter" name="renter">
+            <label for="label"><b> Is renter</b></label>
+            <br>
+        </p>
+        <hr width="60%" align="left" />
+        <p1>
+            <button type="button">Add</button>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="button">update</button>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="button">delete</button>
+        </p1>
+        <hr width="60%" align="left" />
+        <script src="" async defer></script>
+    </body>
+</html>

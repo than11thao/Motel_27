@@ -1,0 +1,19 @@
+{% extends "home/base.html" %}
+{% load  static %}
+{% block style %}
+    .edit_bill{
+        padding: 5% 10%;
+    }
+{% endblock style %}
+
+{% block dashboard %}
+  <div class="edit_bill">
+    <h1>Chỉnh sửa hóa đơn <span class="badge badge-secondary">!</span></h1>
+    <form action="{% url 'bill:edit_bill' id %}"  method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{edit_form}}
+          <input type="submit" class="btn btn-primary" value="Sửa">
+      </form>
+  </div>
+{% endblock dashboard %}

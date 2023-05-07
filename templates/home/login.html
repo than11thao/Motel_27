@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'home/css/dangnhap.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login">
+            <div class="wrapper-login">
+                <div class="login-image">
+                    <img src="{% static 'home/image/login_bg.png' %}" alt="">
+                </div>
+                <form id="login-form"  class="form-login">
+                    {% csrf_token %}
+                    <span class="login-title">
+                        <b>Đăng nhập hệ thống</b>
+                    </span>
+                    <div class="wrap-input">
+                        <input class="input-login" type="text" placeholder="Tài khoản" name="username" id="username" required>
+                        <span class="symbol-input">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input">
+                        <input class="input-login action-password" type="password" placeholder="Mật khẩu" name="password" id="password-field" required>
+                        <i class="fa-solid fa-eye eye-open"></i>
+                        <i class="fa-solid fa-eye-slash eye-close"></i>
+                        <span class="symbol-input">
+                            <i class="fa-solid fa-key"></i>
+                        </span>
+                    </div>
+                   <div class="btn-login">
+                       <input type="submit" value="Đăng nhập">
+                   </div>
+                    <div class="link-login">
+                        <a href="{% url 'home:signup' %}" class="link-registration">
+                            Đăng ký
+                        </a>
+                        <a href="./forgot.html" class="link-forgot">
+                            Bạn quên mật khẩu
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'home/script.js/anhienmk.js' %}"></script>
+    <script>
+        $('#login-form').submit((e) =>{
+            e.preventDefault()
+            data=$('#login-form').serialize()
+            $.ajax({
+                type:"POST",
+                url:"{% url 'home:login' %}",
+                data:data,
+                success: (response)=>{
+                    if(response.valid==false){
+                        alert(response.message)
+                    }
+                    else{
+                        if(response.is_owner==true)
+                            window.location.replace("{% url 'home:dashboard' %}");
+                        else{
+                            window.location.replace("{% url 'home:renter_site' %}");
+                        }
+                    }
+                    
+                },
+                error: function (response) {
+                    // alert the error if any error occured
+                    alert("loi")
+                }
+            })
+
+        })
+    </script>
+</body>
+</html>

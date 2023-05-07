@@ -1,0 +1,181 @@
+{% extends "home/base.html" %}
+{% load  static %}
+
+{% block dashboard %}
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <i class="fa-solid fa-bars buttom-menu"></i>
+        </div>
+        <div class="header-right">
+            <div class="text">
+                <i class="fa-solid fa-file"></i>
+            </div>
+            <div class="calcula">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+        </div>
+    </header>
+    <!-- BLUR -->
+    <div id="blur-cal">
+        <div class="wrapper">
+            <div class="modal-header">
+                <h4>Máy tính</h4>
+                <i class="fa-solid fa-circle-xmark ic-close"></i>
+            </div>
+            <div class="modal-body">
+                <div id="result"></div>
+                <div class="calculator">
+                    <div class="number">
+                        <button class="btn" value="7">7</button>
+                        <button class="btn" value="8">8</button>
+                        <button class="btn" value="9">9</button>
+                        <button class="btn" value="4">4</button>
+                        <button class="btn" value="5">5</button>
+                        <button class="btn" value="6">6</button>
+                        <button class="btn" value="1">1</button>
+                        <button class="btn" value="2">2</button>
+                        <button class="btn" value="3">3</button>
+                        <button class="btn" value="0">0</button>
+                        <button class="btn" value=".">.</button>
+                        <button class="btn" onclick="equal()">=</button>
+                    </div>
+                    <div class="operation">
+                        <button class="btn" onclick="undo()">D</button>
+                        <button class="btn" style="background: rgb(141, 2, 2);" onclick="clean()">C</button>
+                        <button class="btn" value="*">*</button>
+                        <button class="btn" value="/">/</button>
+                        <button class="btn" value="+">+</button>
+                        <button class="btn" value="-">-</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="footer-shutcal">
+                    <button>Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="blur-text">
+        <div class="wrapper-text">
+            <div class="modal-header">
+                <h4>Ghi chú</h4>
+                <i class="fa-solid fa-circle-xmark ic-close-text"></i>
+            </div>
+            <div class="modal-content">
+                <textarea id="Note" rows="12" cols="60" class="form-control" placeholder="Nội dung"></textarea>
+            </div>
+            <div class="modal-footer">
+                <div class="footer-save">
+                    <button>Lưu</button>
+                </div>
+                <div class="footer-shut">
+                    <button>Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTAINER -->
+    <div class="container container-home">
+        <div class="card-deck box-home">
+            <div class="card">
+                <div class="x_title">
+                    <h3>Trạng thái phòng</h3>
+                </div>
+                <div class="x_content">
+                    <canvas id="statusChart" style="width:100%;max-width:400px;height:160px;"></canvas>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="x_title">
+                    <h3>Doanh thu (VND)</h3>
+                </div>
+                <div class="x_content">
+                    <canvas id="turnoverChart" style="width:100%;max-width:400px;height:160px;"></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-deck box-home">
+            <div class="card">
+                <div class="x_title">
+                    <h3>Trạng thái phòng</h3>
+                </div>
+                <div class="x_content_wrapper">
+                    <div class="x_box_container">
+                        {% for room in all_room %}
+                        <div class="x_box_items 
+                            {% if room.status %} rented 
+                            {% else %} not_rented
+                            {% endif %}
+                        ">
+                            <div class="item_ic">
+                                <i class='bx bxs-home'></i>
+                            </div>
+                            <div class="item_number_room">
+                                <span>Phòng {{ room.room_number}}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="x_title">
+                    <h3>Danh sách hóa đơn phòng chưa thanh toán</h3>
+                </div>
+
+                <div class="x_content_table_debt">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Phòng</th>
+                            <th scope="col">Ngày Tháng</th>
+                            <th scope="col">Số tiền</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for bill in unpaid_bills %}
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{bill.room.room_number}}</td>
+                                    <td>{{bill.date|date:"d M Y"}}</td>
+                                    <td>{{bill.get_total_amount}}vnd</td>
+                                </tr>
+                            {% endfor %}
+                               
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+{% endblock dashboard %}
+
+{% block script %}
+    <script>
+        var rooms=document.getElementsByClassName('ele-room')
+        for( var i=0 ;i<rooms.length;i++){
+            if(rooms[i].className.indexOf("empty")!=-1){
+                rooms[i].style.backgroundColor="blue";
+                console.log(rooms[i].className)
+            }
+            else{
+                rooms[i].style.backgroundColor="red";
+            }
+            
+        }
+        create_status_room({{infor_room}})
+    </script>        
+{% endblock script %}
